@@ -1,0 +1,7 @@
+quantity,value,unit
+n_in_transit_points,8,count
+n_out_of_transit_points,10,count
+out_of_transit_flux,1.00000 +/- 0.00047,normalized
+in_transit_flux,0.99173 +/- 0.00043,normalized
+helium_excess_absorption_depth,0.827 +/- 0.064,percent
+detection_significance,12.9,sigma
