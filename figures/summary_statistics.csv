@@ -3,5 +3,6 @@ n_in_transit_points,8,count
 n_out_of_transit_points,10,count
 out_of_transit_flux,1.00000 +/- 0.00047,normalized
 in_transit_flux,0.99173 +/- 0.00043,normalized
-helium_excess_absorption_depth,0.827 +/- 0.064,percent
-detection_significance,12.9,sigma
+this_repo_own_statistic,0.827 +/- 0.064,percent (NOT the paper's estimator)
+this_repo_own_statistic_snr,12.9,"sigma (band S/N, not a molecular/atmospheric detection significance)"
+paper_combined_value,1.08 +/- 0.05,"percent (Allart et al. 2018, transit-model fit)"

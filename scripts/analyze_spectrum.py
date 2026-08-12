@@ -1,9 +1,10 @@
-"""Analyze real HARPS-N/GIANO-B helium 10830 A observations of HAT-P-11b,
-quantifying its real, published escaping-helium detection.
+"""Analyze real CARMENES helium 10830 A observations of HAT-P-11b.
 
 Data source: Zenodo record 1473463 (Allart et al. 2018, Science), the
 first spectrally resolved detection of escaping helium from an
-exoplanet's extended upper atmosphere. Two real files are used:
+exoplanet's extended upper atmosphere, observed with the CARMENES
+spectrograph on the 3.5 m telescope at Calar Alto. Two real files are
+used:
 
 - data/helium_absorption_lightcurve.txt -- real phase-folded relative
   flux measured inside the He 10830 A line during transit (18 points,
@@ -13,6 +14,17 @@ exoplanet's extended upper atmosphere. Two real files are used:
 - data/helium_10830_line_profile.txt -- real per-wavelength-bin excess
   absorption (104 bins) across the triplet, used for a qualitative
   spectral-shape figure alongside the real best-fit model.
+
+IMPORTANT CAVEAT: the statistic this script computes (an
+inverse-variance-weighted mean flux inside a fixed phase < 0.02
+window, treating each phase-folded point as an independent
+measurement) is NOT the same estimator as the paper's own published
+result. Allart et al. (2018) report a combined excess absorption of
+1.08 +/- 0.05% (0.75 A passband, transit-model fit), with the two
+individual transits at 0.82 +/- 0.09% and 1.21 +/- 0.06%. This
+script's own descriptive statistic is reported and compared against
+that published value explicitly below, rather than presented as a
+reproduction of it.
 """
 
 from __future__ import annotations
@@ -32,6 +44,12 @@ FIG_DIR = Path(__file__).resolve().parents[1] / "figures"
 # Real HAT-P-11b/HAT-P-11 system parameters (NASA Exoplanet Archive, pscomppars)
 RP_REARTH = 4.36
 TRANSIT_HALF_WIDTH_PHASE = 0.02  # in-transit window used for the weighted comparison
+
+# Published reference value (Allart et al. 2018, combined transit-model fit,
+# 0.75 A passband) -- NOT the same estimator as this script's own statistic
+# below; kept here only for an explicit, honest comparison.
+PAPER_COMBINED_DEPTH_PCT = 1.08
+PAPER_COMBINED_DEPTH_ERR_PCT = 0.05
 
 
 def load_lightcurve() -> tuple[np.ndarray, np.ndarray, np.ndarray]:
@@ -95,12 +113,13 @@ def main() -> None:
         writer.writerow(["n_out_of_transit_points", out_transit.sum(), "count"])
         writer.writerow(["out_of_transit_flux", f"{mean_out:.5f} +/- {err_out:.5f}", "normalized"])
         writer.writerow(["in_transit_flux", f"{mean_in:.5f} +/- {err_in:.5f}", "normalized"])
-        writer.writerow(["helium_excess_absorption_depth", f"{depth*100:.3f} +/- {depth_err*100:.3f}", "percent"])
-        writer.writerow(["detection_significance", f"{sigma:.1f}", "sigma"])
+        writer.writerow(["this_repo_own_statistic", f"{depth*100:.3f} +/- {depth_err*100:.3f}", "percent (NOT the paper's estimator)"])
+        writer.writerow(["this_repo_own_statistic_snr", f"{sigma:.1f}", "sigma (band S/N, not a molecular/atmospheric detection significance)"])
+        writer.writerow(["paper_combined_value", f"{PAPER_COMBINED_DEPTH_PCT} +/- {PAPER_COMBINED_DEPTH_ERR_PCT}", "percent (Allart et al. 2018, transit-model fit)"])
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.6))
 
-    ax1.errorbar(phase, flux, yerr=ferr, fmt="o", ms=5, color="#2f6f4f", capsize=2, label="Real HARPS-N He 10830 A flux")
+    ax1.errorbar(phase, flux, yerr=ferr, fmt="o", ms=5, color="#2f6f4f", capsize=2, label="Real CARMENES He 10830 A flux")
     ax1.axvspan(-TRANSIT_HALF_WIDTH_PHASE, TRANSIT_HALF_WIDTH_PHASE, color="#2f6f4f", alpha=0.12, label="In-transit window")
     ax1.axhline(mean_out, color="#999", ls="--", lw=1, label="Out-of-transit mean")
     ax1.set_xlabel("Orbital phase")
@@ -133,7 +152,8 @@ def main() -> None:
     print(f"Wrote {FIG_DIR / 'hatp11b_helium_escape.png'}")
     print(f"Out-of-transit flux: {mean_out:.5f} +/- {err_out:.5f}")
     print(f"In-transit flux:     {mean_in:.5f} +/- {err_in:.5f}")
-    print(f"Helium excess absorption depth: {depth*100:.3f}% +/- {depth_err*100:.3f}% ({sigma:.1f} sigma)")
+    print(f"This repo's own statistic: {depth*100:.3f}% +/- {depth_err*100:.3f}% ({sigma:.1f} sigma band S/N -- our own estimator, not a molecular-atmosphere detection significance)")
+    print(f"Paper's combined value (Allart et al. 2018, transit-model fit): {PAPER_COMBINED_DEPTH_PCT}% +/- {PAPER_COMBINED_DEPTH_ERR_PCT}% -- a DIFFERENT estimator; these numbers should not be equated")
 
 
 if __name__ == "__main__":

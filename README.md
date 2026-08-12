@@ -1,26 +1,27 @@
 # HAT-P-11b — Exoplanet Atmosphere Report
 
-A warm Neptune around an active K-dwarf, caught in the act of losing its
-upper atmosphere. This repo reproduces the real, spectrally resolved
-detection of escaping helium gas that made HAT-P-11b one of the first
-"warm Neptunes" confirmed to be evaporating.
+A warm Neptune around an active K-dwarf, with a spectrally resolved
+detection of escaping helium gas in its published record. This repo
+runs its own descriptive statistic on Allart et al.'s (2018) CARMENES
+data and compares it to their published measurement rather than
+presenting the two as the same thing.
 
 **[Open the full report](index.html)** (open locally in a browser, or serve
 with `python -m http.server` from this directory).
 
-## What's real here
+## Data sources
 
-- **System parameters** — queried live from the NASA Exoplanet Archive TAP
+- **System parameters** — queried from the NASA Exoplanet Archive TAP
   service (`pscomppars`).
-- **Helium transit data** — two real files from Zenodo record
+- **Helium transit data** — two files from Zenodo record
   [1473463](https://zenodo.org/records/1473463) (Allart et al. 2018,
   *Science*): a phase-folded relative-flux light curve measured inside the
   He I 10830 Å line, and the per-wavelength-bin spectral excess-absorption
-  profile across the triplet, both from real HARPS-N/GIANO-B transit
-  observations.
+  profile across the triplet, both from CARMENES transit
+  observations (3.5 m telescope, Calar Alto Observatory).
 - **Analysis** — `scripts/analyze_spectrum.py` computes an
   inverse-variance-weighted in-transit vs. out-of-transit flux comparison
-  to quantify the real helium-escape detection. Run it yourself:
+  and prints it next to the paper's own combined value. Run it yourself:
 
   ```bash
   pip install -r requirements.txt
@@ -31,29 +32,37 @@ with `python -m http.server` from this directory).
 
 ```text
 index.html              the report webpage
-data/                    real HARPS-N/GIANO-B helium transit data (Zenodo 1473463)
-scripts/analyze_spectrum.py   real in-transit vs out-of-transit analysis
+data/                    CARMENES helium transit data (Zenodo 1473463)
+scripts/analyze_spectrum.py   in-transit vs out-of-transit analysis
 figures/                 generated plot + summary_statistics.csv
 ```
 
-## Key finding this repo shows directly
+## What the numbers show
 
-A real 0.827% ± 0.064% dip in flux inside the helium 10830 Å line
-specifically during transit, at **12.9-sigma significance** — a highly
-confident, genuine detection of gas extending well beyond the planet's
-measured transit radius. This is direct spectroscopic evidence that
-HAT-P-11b is actively losing atmosphere to space, driven by strong
-high-energy heating from its magnetically active K-dwarf host star.
+A 0.827% ± 0.064% dip in flux inside the helium 10830 Å line during
+transit (12.9σ band signal-to-noise on this repo's own simplified
+estimator, which treats each phase-folded point as independent). This
+is a different estimator from — and shouldn't be equated with — the
+paper's published combined result of 1.08% ± 0.05% (individual
+transits: 0.82% ± 0.09% and 1.21% ± 0.06%), obtained from a transit-model
+fit in a fixed 0.75 Å passband. Both numbers point the same way: excess
+absorption in the helium line beyond the planet's transit depth,
+consistent with an escaping upper atmosphere. Only the paper's number
+is the calibrated measurement — this repo's is an independent check
+run on the same data.
 
-## Honest limitation
+## Limitations
 
-The per-wavelength-bin spectral profile combines only two individual
-transit nights per bin and is noisy at that resolution (per-bin
-fractional errors of order 7%+), so this repo draws its high-significance
-headline result from the higher-cadence phase-folded light curve instead,
-and uses the per-bin spectrum only as a descriptive, qualitative figure —
-stated plainly rather than overclaiming precision the data doesn't
-support.
+1. The per-wavelength-bin spectral profile combines only two transit
+   nights per bin and is noisy at that resolution (bin-level errors
+   above 7%), so the headline statistic comes from the higher-cadence
+   phase-folded light curve instead, with the per-bin spectrum shown
+   for context rather than as a precision measurement.
+2. This repo's own statistic is a simpler estimator (weighted mean over
+   a fixed phase window, treating points as independent) than the
+   paper's transit-model fit, and its 12.9σ figure is a band
+   signal-to-noise under that simplified estimator, not a
+   trial-corrected or covariance-aware detection significance.
 
 ## References
 
