@@ -45,6 +45,9 @@ footer nav { display: flex; gap: 1.2rem; }
 footer a { color: var(--muted); text-decoration: none; }
 footer a:hover { color: var(--accent); }
 .callout { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 6px; font-size: .93rem; }
+.hero-banner { margin: 1.5rem 0 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+.hero-banner img { width: 100%; height: auto; max-height: 440px; object-fit: cover; display: block; }
+.ai-credit { color: var(--muted); font-size: .72rem; font-style: italic; margin: .5rem 0 0; }
 </style>
 </head>
 <body>
@@ -59,6 +62,11 @@ footer a:hover { color: var(--accent); }
       <span class="badge">CARMENES He 10830 Å data (Allart et al. 2018)</span>
     </div>
   </header>
+
+  <div class="hero-banner">
+    <img src="images/hero.png" alt="Artist's concept of HAT-P-11b, a warm Neptune losing helium gas to space">
+  </div>
+  <p class="ai-credit">AI-generated artist's concept of HAT-P-11b — not a real photograph. All data and figures in this report come from actual CARMENES observations (see below).</p>
 
   <section>
     <h2>The planet, in numbers</h2>
@@ -80,6 +88,10 @@ footer a:hover { color: var(--accent); }
     <h2>Why helium at 10830 Å reveals an escaping atmosphere</h2>
     <p>The metastable helium triplet near 10830 Å (infrared) is populated in the extended, heated upper atmospheres of close-in exoplanets exposed to strong stellar UV/X-ray flux. Unlike hydrogen Lyman-alpha, this line is observable from the ground and is not scattered/absorbed by the interstellar medium, making it a clean tracer of atmospheric outflow. If a planet's upper atmosphere is escaping into a comet-like tail of neutral helium, that gas absorbs a small amount of extra starlight specifically during transit, at exactly this wavelength — deeper and longer than the planet's solid transit alone.</p>
     <p>Allart et al. (2018) used this technique to make the first spectrally resolved detection of helium escape from an exoplanet, observing HAT-P-11b with the CARMENES spectrograph on the 3.5 m telescope at Calar Alto across two transits. The figures below work directly from their published data files.</p>
+    <div class="figure">
+      <img src="images/3d-render.png" alt="Close-up 3D-rendered concept of HAT-P-11b's escaping helium atmosphere">
+      <p class="ai-credit">AI-generated 3D-render-style concept of the extended, escaping helium envelope implied by the real absorption signal above — not an actual image of the planet.</p>
+    </div>
   </section>
 
   <section>
@@ -102,6 +114,10 @@ footer a:hover { color: var(--accent); }
   <section>
     <h2>Data and method notes</h2>
     <p>System parameters come from the NASA Exoplanet Archive TAP service. The helium light curve and line-profile data are from Zenodo record <a href="https://zenodo.org/records/1473463">1473463</a> (Allart et al. 2018) — see <a href="data/">data/</a> for the files as downloaded and <a href="scripts/analyze_spectrum.py">scripts/analyze_spectrum.py</a> for the analysis (<code>python scripts/analyze_spectrum.py</code> to rerun it). The line-profile panel combines only two transit nights per wavelength bin, so it's noisy at that resolution — bin-level errors run above 7% — which is why the headline number comes from the higher-cadence phase-folded light curve instead, with the line profile shown for context. The 12.9σ figure describes this notebook's own weighted-mean estimator, not a trial-corrected or covariance-aware significance calculation.</p>
+    <div class="figure">
+      <img src="images/instrument.png" alt="AI-generated illustration of the CARMENES spectrograph and the 3.5 m telescope at Calar Alto">
+      <p class="ai-credit">AI-generated illustration of the CARMENES spectrograph at Calar Alto Observatory, which took the real helium-line data used in this report. Not an official observatory photograph — see <a href="https://carmenes.caha.es/">carmenes.caha.es</a> for real imagery.</p>
+    </div>
   </section>
 
   <section>

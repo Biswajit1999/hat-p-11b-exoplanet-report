@@ -1,5 +1,9 @@
 # HAT-P-11b — Exoplanet Atmosphere Report
 
+<img src="images/thumbnail.png" alt="Artist's concept of HAT-P-11b" width="360">
+
+*AI-generated artist's concept — not a real photograph. See the report for actual CARMENES data.*
+
 A warm Neptune around an active K-dwarf, with a spectrally resolved
 detection of escaping helium gas in its published record. This repo
 runs its own descriptive statistic on Allart et al.'s (2018) CARMENES
