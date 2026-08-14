@@ -35,6 +35,21 @@ index.html              the report webpage
 data/                    CARMENES helium transit data (Zenodo 1473463)
 scripts/analyze_spectrum.py   in-transit vs out-of-transit analysis
 figures/                 generated plot + summary_statistics.csv
+tests/                   unit tests + a regression check against the real data
+```
+
+## Tests
+
+`tests/test_analysis.py` checks the weighted-mean formula against a
+hand-computed case and reruns the full pipeline on the real downloaded
+light curve, verifying it still reproduces the numbers this README
+documents — including that the paper's real combined value (1.08%,
+Allart et al. 2018) stays attached for comparison rather than being
+presented as reproduced. Runs automatically on every push via GitHub
+Actions; run locally with:
+
+```bash
+pytest tests/ -v
 ```
 
 ## What the numbers show
