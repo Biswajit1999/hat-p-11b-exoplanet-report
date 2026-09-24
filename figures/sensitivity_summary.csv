@@ -1,0 +1,10 @@
+quantity,value,interpretation
+predeclared_designs,74,all valid phase-window/weight/baseline combinations
+depth_min_percent,0.5109005357416652,estimator-choice envelope
+depth_median_percent,0.8408828369749877,not a retrieval
+depth_max_percent,1.1597569868666557,estimator-choice envelope
+all_depths_positive,True,directional stability
+formal_snr_min,3.6394746439035037,independence-conditioned only
+formal_snr_max,14.060657375322824,not detection significance
+jackknife_depth_min_percent,0.7474237394138772,"default masks, one point deleted"
+jackknife_depth_max_percent,1.0031758453531658,"default masks, one point deleted"

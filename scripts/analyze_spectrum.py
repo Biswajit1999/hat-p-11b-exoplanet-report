@@ -37,6 +37,7 @@ import scienceplots  # noqa: F401 (registers 'science' style)
 import numpy as np
 
 plt.style.use(["science", "no-latex"])
+plt.rcParams["font.family"] = "DejaVu Sans"
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 FIG_DIR = Path(__file__).resolve().parents[1] / "figures"
