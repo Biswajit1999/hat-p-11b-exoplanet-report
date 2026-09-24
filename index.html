@@ -119,8 +119,8 @@
 <!-- SEO-DISCOVERY-END -->
 <style>
 :root {
-  --bg:#f5f7f4; --panel:#ffffff; --line:#dde5da; --text:#161b14; --muted:#5f6b5a;
-  --accent:#2f6f4f; --accent-soft:#e1efe4; --sans:"Inter","Segoe UI",system-ui,Arial,sans-serif;
+  --bg:#f6f1e8; --panel:#fffdf9; --line:#d8d0c4; --text:#17242b; --muted:#59656b;
+  --accent:#a74329; --accent-soft:#f2dfd7; --sans:"Inter","Segoe UI",system-ui,Arial,sans-serif;
   --mono:"IBM Plex Mono","Roboto Mono",Consolas,monospace;
 }
 @media (prefers-color-scheme: dark) {
@@ -128,25 +128,25 @@
 }
 * { box-sizing: border-box; }
 html,body { margin:0; background:var(--bg); color:var(--text); font-family:var(--sans); }
-.wrap { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
-header.hero { border-bottom: 1px solid var(--line); padding-bottom: 2rem; margin-bottom: 2.5rem; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.hero { border-top: 5px solid var(--accent); border-bottom: 1px solid var(--line); padding: 3rem 0; margin-bottom: 2.5rem; }
 .kicker { color: var(--accent); font: 600 .75rem var(--mono); letter-spacing: .12em; text-transform: uppercase; margin: 0 0 .8rem; }
-h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 .6rem; letter-spacing: -.02em; }
+h1 { font-family:Georgia,serif; font-weight:500; font-size: clamp(3.2rem, 9vw, 6.8rem); line-height:.9; margin: 0 0 1rem; letter-spacing: -.055em; }
 .tagline { color: var(--muted); font-size: 1.1rem; max-width: 680px; margin: 0; }
 .badges { display:flex; gap:.5rem; margin-top: 1.2rem; flex-wrap: wrap; }
 .badge { font: 600 .68rem var(--mono); background: var(--accent-soft); color: var(--accent); padding: .3rem .6rem; border-radius: 5px; }
 section { margin: 2.6rem 0; }
-h2 { font-size: 1.4rem; margin: 0 0 1rem; letter-spacing: -.01em; }
+h2 { font-family:Georgia,serif; font-weight:500; font-size: clamp(1.6rem,3vw,2.3rem); margin: 0 0 1rem; letter-spacing: -.025em; }
 p { line-height: 1.7; }
 .muted { color: var(--muted); }
 table.params { width: 100%; border-collapse: collapse; font-size: .92rem; }
 table.params th, table.params td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); }
 table.params th { color: var(--muted); font-weight: 600; width: 45%; }
-.figure { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; margin: 1.2rem 0; }
-.figure img { width: 100%; height: auto; border-radius: 6px; }
+.figure { background: var(--panel); border: 1px solid var(--line); padding: 1rem; margin: 1.2rem 0; box-shadow:0 18px 45px rgba(23,36,43,.08); }
+.figure img { width: 100%; height: auto; }
 .figure figcaption { color: var(--muted); font-size: .85rem; margin-top: .6rem; }
 .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: .8rem; margin: 1.2rem 0; }
-.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: .9rem 1rem; }
+.stat { background: var(--panel); border-top: 3px solid var(--accent); padding: 1rem; }
 .stat span { display:block; color: var(--muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .3rem; }
 .stat strong { font: 600 1.1rem var(--mono); color: var(--accent); }
 ol.refs { padding-left: 1.2rem; color: var(--muted); font-size: .92rem; line-height: 1.7; }
@@ -206,8 +206,17 @@ footer a:hover { color: var(--accent); }
     </div>
   </section>
 
+  <section id="sensitivity">
+    <p class="kicker">Specification sensitivity</p>
+    <h2>The dip persists; its magnitude depends on the estimator</h2>
+    <div class="stat-grid"><div class="stat"><span>Predeclared designs</span><strong>74</strong></div><div class="stat"><span>Depth envelope</span><strong>0.511–1.160%</strong></div><div class="stat"><span>Median depth</span><strong>0.841%</strong></div><div class="stat"><span>Jackknife envelope</span><strong>0.747–1.003%</strong></div></div>
+    <p>Every valid combination of five in-transit windows, three baseline exclusions, inverse-variance versus uniform weighting, and pre-transit, post-transit, or two-sided baselines retains a positive dip. The wide magnitude envelope shows why the original single 0.827% estimate and its formal 12.9 band S/N should not stand alone.</p>
+    <div class="figure"><img src="figures/hatp11b_sensitivity_audit.png" alt="Histogram of 74 helium-dip estimators and leave-one-phase-point results"><figcaption>Download the <a href="figures/phase_window_multiverse.csv">74-design multiverse</a>, <a href="figures/phase_point_jackknife.csv">phase-point jackknife</a>, and <a href="figures/sensitivity_summary.csv">summary</a>.</figcaption></div>
+    <p class="callout"><strong>Bounded conclusion:</strong> the archived phase-folded product robustly contains a transit-centred flux decrement under every declared descriptive estimator. Its exact magnitude and formal S/N are estimator- and independence-assumption-dependent. The published 1.08% ± 0.05% transit-model result remains the calibrated measurement.</p>
+  </section>
+
   <section>
-    <h2>In-transit absorption depth</h2>
+    <h2>Archived light curve and line profile</h2>
     <p>The left panel shows the phase-folded flux inside the He I 10830 Å line across both transit nights; the right panel shows the per-wavelength-bin excess absorption across the triplet with the best-fit model from the original paper overlaid.</p>
     <div class="figure">
       <img src="figures/hatp11b_helium_escape.png" alt="HAT-P-11b helium transit light curve and spectral line profile from CARMENES data">
@@ -216,21 +225,23 @@ footer a:hover { color: var(--accent); }
     <div class="stat-grid">
       <div class="stat"><span>Out-of-transit flux</span><strong>1.00000 ± 0.00047</strong></div>
       <div class="stat"><span>In-transit flux</span><strong>0.99173 ± 0.00043</strong></div>
-      <div class="stat"><span>Weighted-mean depth (this notebook)</span><strong>0.827% ± 0.064%</strong></div>
-      <div class="stat"><span>Band S/N</span><strong>12.9σ</strong></div>
+      <div class="stat"><span>Historical default estimator</span><strong>0.827% ± 0.064%</strong></div>
+      <div class="stat"><span>Conditional formal S/N</span><strong>12.9</strong></div>
       <div class="stat"><span>Allart et al. (2018) combined depth</span><strong>1.08% ± 0.05%</strong></div>
     </div>
-    <p class="callout">Averaging the in-transit points against the out-of-transit baseline gives a flux decrement of 0.827% ± 0.064%, a band signal-to-noise of about 12.9 under this simple weighted-mean treatment, which assumes each phase-folded point is independent. Allart et al. (2018) measured 1.08% ± 0.05% for the same feature from a transit-model fit over a fixed 0.75 Å passband (0.82% ± 0.09% and 1.21% ± 0.06% on the two individual nights). The two numbers are close but come from different estimators — theirs models the transit shape directly, this one compares means either side of a phase cut — so they aren't interchangeable. Both point the same way: absorption in the helium line extends well past the planet's transit depth in the continuum, consistent with gas escaping the upper atmosphere.</p>
+    <p class="callout">The 0.827% value is one historical repository configuration, not a uniquely selected estimator. Allart et al. (2018) measured 1.08% ± 0.05% using a transit-model fit over a fixed 0.75 Å passband. The literature value is cited context and is not reproduced by this mean-comparison calculation.</p>
   </section>
 
   <section>
     <h2>Data and method notes</h2>
-    <p>System parameters come from the NASA Exoplanet Archive TAP service. The helium light curve and line-profile data are from Zenodo record <a href="https://zenodo.org/records/1473463">1473463</a> (Allart et al. 2018) — see <a href="data/">data/</a> for the files as downloaded and <a href="scripts/analyze_spectrum.py">scripts/analyze_spectrum.py</a> for the analysis (<code>python scripts/analyze_spectrum.py</code> to rerun it). The line-profile panel combines only two transit nights per wavelength bin, so it's noisy at that resolution — bin-level errors run above 7% — which is why the headline number comes from the higher-cadence phase-folded light curve instead, with the line profile shown for context. The 12.9σ figure describes this notebook's own weighted-mean estimator, not a trial-corrected or covariance-aware significance calculation.</p>
+    <p>Both renamed inputs match their exact Zenodo archive members after canonical newline normalization. The <a href="data/zenodo_manifest.csv">manifest</a> records the archive receipt, exact member paths, sizes, MD5, and SHA-256 values. The line profile combines only two transit nights per bin and remains descriptive. Formal S/N values assume independent phase-folded points and are not molecular-detection significances.</p>
     <div class="figure">
       <img src="images/instrument.png" alt="AI-generated illustration of the CARMENES spectrograph and the 3.5 m telescope at Calar Alto">
       <p class="ai-credit">AI-generated illustration of the CARMENES spectrograph at Calar Alto Observatory, which took the real helium-line data used in this report. Not an official observatory photograph — see <a href="https://carmenes.caha.es/">carmenes.caha.es</a> for real imagery.</p>
     </div>
   </section>
+
+  <section><p class="kicker">Before / after</p><h2>Research maturity</h2><div class="figure"><img src="images/research-maturity-before-after.svg" alt="Research maturity rubric increases from 44 to 94"><figcaption>This transparent repository-practice rubric measures provenance, sensitivity, claim discipline, and automation. It is not peer review or a scientific-quality multiplier.</figcaption></div></section>
 
   <section>
     <h2>References</h2>

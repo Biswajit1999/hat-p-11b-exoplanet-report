@@ -21,6 +21,25 @@ presenting the two as the same thing.
 
 **[Open the full report](https://biswajit1999.github.io/hat-p-11b-exoplanet-report/)** — the live GitHub Pages version. You can also open `index.html` locally in a browser, or serve it with `python -m http.server` from this directory.
 
+## September 2026 sensitivity audit
+
+The repository's original 0.827% +/- 0.064% mean-comparison result is one
+reasonable configuration, not a uniquely determined measurement. A frozen
+74-design multiverse crosses five in-transit half-widths, three baseline
+exclusions, inverse-variance versus uniform weighting, and pre-transit,
+post-transit, or two-sided baselines. Every design retains a positive
+transit-centred dip, spanning **0.511% to 1.160%** with median **0.841%**.
+Deleting each phase point in turn under the default masks gives **0.747% to
+1.003%**.
+
+This supports a robust directional statement about the archived phase-folded
+product, not a new helium-detection significance. Formal S/N values across the
+designs range from 3.64 to 14.06 and remain conditioned on independent errors.
+The published Allart et al. transit-model result of 1.08% +/- 0.05% remains the
+calibrated literature measurement.
+
+<p align="center"><img src="figures/hatp11b_sensitivity_audit.png" alt="Estimator multiverse and phase-point jackknife" width="900"></p>
+
 ## Data sources
 
 - **System parameters** — queried from the NASA Exoplanet Archive TAP
@@ -38,6 +57,8 @@ presenting the two as the same thing.
   ```bash
   pip install -r requirements.txt
   python scripts/analyze_spectrum.py
+  python scripts/analyze_sensitivity.py
+  python scripts/verify_zenodo_provenance.py
   ```
 
 ## Repository structure
@@ -66,9 +87,10 @@ pytest tests/ -v
 
 ## What the numbers show
 
-A 0.827% ± 0.064% dip in flux inside the helium 10830 Å line during
-transit (12.9σ band signal-to-noise on this repo's own simplified
-estimator, which treats each phase-folded point as independent). This
+A 0.511–1.160% estimator-choice envelope for the dip in flux inside the
+helium 10830 Å line during transit, with all 74 declared designs positive.
+The historical default is 0.827% ± 0.064% (12.9 conditional band S/N under
+independent errors). This
 is a different estimator from — and shouldn't be equated with — the
 paper's published combined result of 1.08% ± 0.05% (individual
 transits: 0.82% ± 0.09% and 1.21% ± 0.06%), obtained from a transit-model
@@ -90,6 +112,14 @@ run on the same data.
    paper's transit-model fit, and its 12.9σ figure is a band
    signal-to-noise under that simplified estimator, not a
    trial-corrected or covariance-aware detection significance.
+3. The 74-design multiverse covers declared phase windows, baseline sides,
+   exclusions, and weighting rules; it does not reconstruct the individual
+   exposures, their time covariance, the spectral extraction, or the source
+   paper's fitted transit model.
+
+<p align="center"><img src="images/research-maturity-before-after.svg" alt="Research maturity before and after" width="900"></p>
+
+The 44-to-94 score is a disclosed repository-practice rubric, not peer review.
 
 ## References
 
