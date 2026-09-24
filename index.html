@@ -128,6 +128,9 @@
 }
 * { box-sizing: border-box; }
 html,body { margin:0; background:var(--bg); color:var(--text); font-family:var(--sans); }
+.skip { position:absolute; left:1rem; top:-5rem; z-index:10; background:var(--text); color:var(--bg); padding:.7rem 1rem; }
+.skip:focus { top:1rem; }
+a:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
 .wrap { max-width: 1040px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 header.hero { border-top: 5px solid var(--accent); border-bottom: 1px solid var(--line); padding: 3rem 0; margin-bottom: 2.5rem; }
 .kicker { color: var(--accent); font: 600 .75rem var(--mono); letter-spacing: .12em; text-transform: uppercase; margin: 0 0 .8rem; }
@@ -163,6 +166,7 @@ footer a:hover { color: var(--accent); }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to research evidence</a>
 <div class="wrap">
   <header class="hero">
     <p class="kicker">Exoplanet Atmosphere Report · CARMENES, He I 10830 Å</p>
@@ -179,6 +183,8 @@ footer a:hover { color: var(--accent); }
     <img src="images/hero.png" alt="Artist's concept of HAT-P-11b, a warm Neptune losing helium gas to space">
   </div>
   <p class="ai-credit">AI-generated artist's concept of HAT-P-11b — not a real photograph. All data and figures in this report come from actual CARMENES observations (see below).</p>
+
+  <main id="main">
 
   <section>
     <h2>The planet, in numbers</h2>
@@ -254,6 +260,7 @@ footer a:hover { color: var(--accent); }
     </ol>
   </section>
 
+  </main>
   <footer>
     <span>Biswajit Jana · Exoplanet Atmosphere Report Series</span>
     <nav>
