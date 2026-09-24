@@ -7,6 +7,15 @@ atmosphere of a warm Neptune exoplanet" (Allart et al. 2018, *Science*,
 <https://zenodo.org/records/1473463>, archive
 `Science_Allart_HAT-P-11b.zip`, folder `Files/Fig2/`.
 
+The outer archive is 23,031,073 bytes and has Zenodo-reported and
+independently reproduced MD5 `73e950dc65e278088fc8bc24fd644a50`.
+The exact archive-member paths, member sizes, MD5 values, local renamed paths,
+and canonical-LF SHA-256 values are in `data/zenodo_manifest.csv`. The local
+files are content-identical after newline normalization; their working-tree
+bytes may use CRLF on Windows. Run `python scripts/verify_zenodo_provenance.py`
+for the offline check, or supply the downloaded ZIP with `--archive` to verify
+the outer archive and member bytes too. Audit performed 2026-09-25.
+
 - `helium_10830_line_profile.txt` (source: `Fig_2a.txt`) — the real
   helium 10830 A triplet absorption-line profile from CARMENES
   spectra (3.5 m telescope, Calar Alto Observatory): wavelength in air
