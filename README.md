@@ -117,7 +117,6 @@ run on the same data.
    exposures, their time covariance, the spectral extraction, or the source
    paper's fitted transit model.
 
-<p align="center"><img src="images/research-maturity-before-after.svg" alt="Research maturity before and after" width="900"></p>
 
 The 44-to-94 score is a disclosed repository-practice rubric, not peer review.
 
